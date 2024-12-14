@@ -1,10 +1,8 @@
 import { Avatar } from "@nextui-org/react";
 
-import { users } from "./data";
-
-const ListUsers = () => {
+const ListUsers = ({ users, handleDeleteUser, handleSelectedUser }) => {
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-100px)]">
+    <ul className="list-none flex flex-col gap-y-5 border-2 border-white rounded-md p-5">
       <ul className="list-none flex flex-col gap-y-5 border-2 border-white rounded-md p-5">
         {users.map((user) => (
           <li
@@ -14,10 +12,12 @@ const ListUsers = () => {
             <Avatar src={user.image} />
             <p>{user.name}</p>
             <p>{user.email}</p>
+            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+            <button onClick={() => handleSelectedUser(user.id)}>Update</button>
           </li>
         ))}
       </ul>
-    </div>
+    </ul>
   );
 };
 
